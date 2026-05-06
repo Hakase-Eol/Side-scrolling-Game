@@ -32,26 +32,26 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 moveDirection = Vector2.zero;
 
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            moveDirection.x -= 1f;
-            isMovingRight = false; // 왼쪽 이동
-        }
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            moveDirection.x += 1f;
-            isMovingRight = true; // 오른쪽 이동
-        }
+        // if (Input.GetKey(KeyCode.LeftArrow))
+        // {
+        //     moveDirection.x -= 1f;
+        //     isMovingRight = false; // 왼쪽 이동
+        // }
+        // if (Input.GetKey(KeyCode.RightArrow))
+        // {
+        //     moveDirection.x += 1f;
+        //     isMovingRight = true; // 오른쪽 이동
+        // }
 
-        // 이동 방향이 바뀌면 스프라이트 뒤집기
-        if (moveDirection.x > 0f)
-        {
-            spriteRenderer.flipX = false; // 오른쪽 바라봄
-        }
-        else if (moveDirection.x < 0f)
-        {
-            spriteRenderer.flipX = true; // 왼쪽 바라봄
-        }
+        // // 이동 방향이 바뀌면 스프라이트 뒤집기
+        // if (moveDirection.x > 0f)
+        // {
+        //     spriteRenderer.flipX = false; // 오른쪽 바라봄
+        // }
+        // else if (moveDirection.x < 0f)
+        // {
+        //     spriteRenderer.flipX = true; // 왼쪽 바라봄
+        // }
 
         if (!isJumping)
         {
