@@ -38,6 +38,13 @@ public class GameManager : MonoBehaviour
 
     [Header("Player Stats")]
     [SerializeField] int maxHp = 5; // 하트 개수에 맞춰 5로 변경
+
+    [Header("Speed Scale")]
+    [SerializeField]
+    float speedIncreaseRate = 0.5f;
+
+    [SerializeField]
+    float maxScrollSpeed = 30f;
     
     int hp;
     bool isGameOver = false;
@@ -60,6 +67,9 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (isGameOver) return;
+
+        scrollSpeed = Mathf.Min(scrollSpeed + speedIncreaseRate * Time.deltaTime, maxScrollSpeed);
+        Debug.Log($"Scroll Speed: {scrollSpeed}");
         
         spawnTimer += Time.deltaTime;
 

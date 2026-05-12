@@ -21,6 +21,8 @@ public class ItemMover : MonoBehaviour
     [HideInInspector]
     public bool isObstacle = false;
 
+    public AudioClip collisionSound;
+
     void Start()
     {
         Collider2D col = GetComponent<Collider2D>();
@@ -45,6 +47,9 @@ public class ItemMover : MonoBehaviour
             GameManager.Instance?.TakeDamage();
         else
             GameManager.Instance?.AddScore();
+
+        if (collisionSound != null)
+            AudioSource.PlayClipAtPoint(collisionSound, transform.position);
 
         Destroy(gameObject);
     }

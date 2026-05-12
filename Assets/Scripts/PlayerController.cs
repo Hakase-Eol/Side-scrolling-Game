@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public RuntimeAnimatorController idleController;
     public RuntimeAnimatorController jumpController;
     public RuntimeAnimatorController runController;
+    public RuntimeAnimatorController crouchController;
 
     private Animator animator;
 
@@ -53,21 +55,6 @@ public class PlayerController : MonoBehaviour
         //     spriteRenderer.flipX = true; // 왼쪽 바라봄
         // }
 
-        if (!isJumping)
-        {
-            if (moveDirection.x != 0f)
-            {
-                animator.runtimeAnimatorController = runController;
-            }
-            else
-            {
-                animator.runtimeAnimatorController = idleController;
-            }
-        }   
-
-        moveDirection = moveDirection.normalized;
-        transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
-
         if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
         {
             StartJump();
@@ -77,6 +64,20 @@ public class PlayerController : MonoBehaviour
         {
             UpdateJump();
         }
+        else
+        {
+            if (Input.GetKey(KeyCode.DownArrow))
+            {
+                animator.runtimeAnimatorController = crouchController;
+            }
+            else
+            {
+                animator.runtimeAnimatorController = runController;
+            }
+        } 
+
+        moveDirection = moveDirection.normalized;
+        transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
     }
 
     void StartJump()

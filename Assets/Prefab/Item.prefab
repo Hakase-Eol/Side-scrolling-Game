@@ -182,5 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b19798919a7c4216b8a24e0d861a10d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemMover
-  scrollspeed: 5
+  scrollSpeed: 5
   targetCamera: {fileID: 0}
+  isObstacle: 0
+  collisionSound: {fileID: 8300000, guid: bce90b098d16d4d70bfed09b62eb45a5, type: 3}
