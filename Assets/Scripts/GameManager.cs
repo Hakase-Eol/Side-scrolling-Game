@@ -16,48 +16,44 @@ public class GameManager : MonoBehaviour
         Debug.Log($"Score: {score}");
         scoreText.text = $"Score: {score}";
     }
+
+    [Header("Prefabs & Spawn Settings")]
+    [SerializeField] GameObject itemPrefab;
+    [SerializeField] GameObject obstaclePrefab;
+    [SerializeField] float itemSpawnInterval = 2f;
+    [SerializeField] Vector2 itemSpawnYRange = new Vector2(-2f, 2f);
+    [SerializeField] int itemsPerObstacle = 10;
+    [SerializeField] Transform itemParent;
+
+    [Header("Environment Settings")]
+    [SerializeField] float scrollSpeed = 10f;
+    [SerializeField] Camera targetCamera;
+
+    [Header("UI Settings")]
+    [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] GameObject[] heartObjects; // 하트 UI 오브젝트들을 담을 배열
+    [SerializeField] GameObject gameOverUI;     // 게임 오버 시 띄울 UI 패널
+
+    [Header("Player Stats")]
+    [SerializeField] int maxHp = 5; // 하트 개수에 맞춰 5로 변경
     
+    int hp;
+    bool isGameOver = false;
+
+    float spawnTimer;
+    int itemSpawnCount;
 
     void Awake()
     {
         Instance = this;
         hp = maxHp;
+
+        // 시작할 때 게임 오버 UI는 꺼둡니다.
+        if (gameOverUI != null)
+        {
+            gameOverUI.SetActive(false);
+        }
     }
-
-    [SerializeField]
-    GameObject itemPrefab;
-    
-    [SerializeField]
-    GameObject obstaclePrefab;
-
-    [SerializeField]
-    float itemSpawnInterval = 2f;
-
-    [SerializeField]
-    Vector2 itemSpawnYRange = new Vector2(-2f, 2f);
-
-    [SerializeField]
-    float scrollSpeed = 10f;
-
-    [SerializeField]
-    Camera targetCamera;
-
-    [SerializeField]
-    Transform itemParent;
-
-    [SerializeField]
-    TextMeshProUGUI scoreText;
-
-    [SerializeField]
-    int itemsPerObstacle = 10;
-
-    float spawnTimer;
-    int itemSpawnCount;
-
-    [SerializeField]
-    int maxHp = 3;
-    int hp;
-    bool isGameOver = false;
 
     void Update()
     {
@@ -88,14 +84,29 @@ public class GameManager : MonoBehaviour
         hp--;
         Debug.Log($"HP: {hp}");
 
+        // 데미지를 입을 때마다 해당하는 인덱스의 하트 UI를 끕니다.
+        // 예: hp가 4가 되면 heartObjects[4] (5번째 하트)가 꺼집니다.
+        if (hp >= 0 && hp < heartObjects.Length)
+        {
+            heartObjects[hp].SetActive(false);
+        }
+
         if (hp <= 0)
+        {
             GameOver();
+        }
     }
 
     void GameOver()
     {
         isGameOver = true;
         Debug.Log("Game Over");
+
+        // 게임 오버 UI 활성화
+        if (gameOverUI != null)
+        {
+            gameOverUI.SetActive(true);
+        }
     }
 
     void SpawnItem()
