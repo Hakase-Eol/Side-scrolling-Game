@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -26,11 +27,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] Transform itemParent;
 
     [Header("Environment Settings")]
-    [SerializeField] float scrollSpeed = 10f;
+    [SerializeField] public float scrollSpeed = 10f;
     [SerializeField] Camera targetCamera;
 
     [Header("UI Settings")]
     [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] TextMeshProUGUI distanceText;
     [SerializeField] GameObject[] heartObjects; // 하트 UI 오브젝트들을 담을 배열
     [SerializeField] GameObject gameOverUI;     // 게임 오버 시 띄울 UI 패널
 
@@ -39,9 +41,9 @@ public class GameManager : MonoBehaviour
     
     int hp;
     bool isGameOver = false;
-
     float spawnTimer;
     int itemSpawnCount;
+    float distance;
 
     void Awake()
     {
@@ -58,8 +60,13 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (isGameOver) return;
-
+        
         spawnTimer += Time.deltaTime;
+
+        distance += scrollSpeed * Time.deltaTime;
+        if (distanceText != null)
+            distanceText.text = $"Distance: {(int)distance}m";
+            
         if (spawnTimer < itemSpawnInterval)
             return;
 

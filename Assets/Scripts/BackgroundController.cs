@@ -64,7 +64,7 @@ public class BackgroundController : MonoBehaviour
 
     void MoveBackground(Transform bg)
     {
-        bg.position += Vector3.left * scrollSpeed * Time.deltaTime;
+        bg.position += Vector3.left * GameManager.Instance.scrollSpeed * Time.deltaTime;
     }
 
     void RepositionIfOutside(Transform movingBackground, SpriteRenderer movingRenderer, SpriteRenderer otherRenderer)
