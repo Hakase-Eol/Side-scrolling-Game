@@ -21,6 +21,9 @@ public class ItemMover : MonoBehaviour
     [HideInInspector]
     public bool isObstacle = false;
 
+    [HideInInspector]
+    public int bonusScore = 0;
+
     public AudioClip collisionSound;
 
     void Start()
@@ -46,7 +49,7 @@ public class ItemMover : MonoBehaviour
         if (isObstacle)
             GameManager.Instance?.TakeDamage();
         else
-            GameManager.Instance?.AddScore();
+            GameManager.Instance?.AddScore(bonusScore > 0 ? bonusScore : 1);
 
         if (collisionSound != null)
             AudioSource.PlayClipAtPoint(collisionSound, transform.position);

@@ -898,7 +898,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 4, z: 1}
+  m_LocalScale: {x: 5, y: 4.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 234358056}
@@ -1280,7 +1280,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 19.2, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 4, z: 1}
+  m_LocalScale: {x: 5, y: 4.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 234358056}
@@ -1842,6 +1842,11 @@ MonoBehaviour:
   maxHp: 5
   speedIncreaseRate: 0.5
   maxScrollSpeed: 30
+  platformPrefab: {fileID: 3590317328677126668, guid: 6985c8b2f0626426e84843a10fc274f4, type: 3}
+  platformSpawnCance: 0.1
+  bonusScoreAmount: 5
+  bonusItemCount: 3
+  bonusItemSpacing: 1.5
 --- !u!82 &1004942014
 AudioSource:
   m_ObjectHideFlags: 0
